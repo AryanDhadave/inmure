@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>imure - thing out of your think</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <style>
+        body { background-color: #121212; color: #ffffff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .hero-gradient { background: linear-gradient(180deg, rgba(0,0,0,0) 0%, #121212 100%); }
+        .modal { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; }
+        .cart-panel { transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .cart-open { transform: translateX(0); }
+        .inmure-footer {
+    background-color: #000000; /* Dark black background as requested */
+    color: #ffffff;
+    text-align: center;
+    padding: 40px 20px;
+    font-family: 'Inter', sans-serif; /* Use a clean sans-serif font */
+    letter-spacing: 2px;
+    border-top: 1px solid #333; /* Subtle line to separate from content */
+}
+
+.since-tag {
+    font-size: 12px;
+    color: #888888; /* Slightly faded for a sleek look */
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+
+        /* GLOWING SIZE BUTTONS */
+        .size-btn { border: 1px solid #444; padding: 8px 16px; border-radius: 8px; cursor: pointer; transition: all 0.3s; }
+        .size-btn.active { 
+            background: #fff; 
+            color: #000; 
+            border-color: #fff; 
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.6); 
+            font-weight: bold; 
+        }
+
+        .marquee {
+            background: #1a1a1a;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+            overflow: hidden;
+            white-space: nowrap;
+            display: flex;
+            transform: rotate(-1.5deg) scale(1.05);
+            margin: 40px 0;
+            z-index: 20;
+        }
+        .marquee-content { display: flex; animation: scroll 20s linear infinite; }
+        .marquee-item { font-size: 2.5rem; font-weight: 900; text-transform: uppercase; padding: 1rem 3rem; color: #444; display: flex; align-items: center; }
+        .highlight { color: #fff; -webkit-text-stroke: 1px #fff; }
+        @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    </style>
+</head>
+<body>
+
+    <nav class="fixed w-full z-50 flex justify-between items-center p-6 bg-transparent">
+        <div class="text-2xl font-bold tracking-tighter uppercase"></div>
+        <button onclick="toggleCart()" class="glass px-6 py-2 rounded-full hover:bg-white hover:text-black transition">Cart (<span id="cart-count">0</span>)</button>
+    </nav>
+
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <img src="D:\INMURE\Gemini_Generated_Image_5rnkax5rnkax5rnk.png" 
+             class="absolute inset-0 w-full h-full object-cover opacity-60 animate__animated animate__fadeIn" alt="Hero">
+        <div class="absolute inset-0 hero-gradient"></div>
+        <div class="relative text-center z-10">
+            <h1 class="text-5xl md:text-8xl font-black uppercase italic tracking-tighter mb-4 reveal-top"></h1>
+            <p class="text-gray-400 tracking-[0.5em] uppercase reveal-bottom"></p>
+        </div>
+    </section>
+
+    <div class="marquee py-4">
+        <div class="marquee-content">
+            <div class="marquee-item">THING OUT OF YOUR THINK</div>
+            <div class="marquee-item highlight">USE CODE: SAVE10</div>
+            <div class="marquee-item">THING OUT OF YOUR THINK</div>
+            <div class="marquee-item highlight">USE CODE: SAVE10</div>
+            <div class="marquee-item">THING OUT OF YOUR THINK</div>
+            <div class="marquee-item highlight">USE CODE: SAVE10</div>
+            <div class="marquee-item">THING OUT OF YOUR THINK</div>
+            <div class="marquee-item highlight">USE CODE: SAVE10</div>
+        </div>
+    </div>
+
+    <section class="py-24 px-6 max-w-7xl mx-auto">
+        <h2 class="text-4xl font-bold mb-12 reveal-left uppercase tracking-widest">inmure stuff</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="group cursor-pointer reveal-card" onclick="openModal('Oversized Boxy Streetwear', '3200', 'Heavyweight Washed Cotton', 'An oversized or relaxed fit with a boxy silhouette', 'Olive Drab')">
+                <div class="aspect-[3/4] overflow-hidden rounded-xl bg-zinc-900 mb-4">
+                    <img src="D:\INMURE\c68bde1600f4fbad68948f7cbcc46dd5.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                </div>
+                <h3 class="font-medium text-lg uppercase">Oversized Boxy Streetwear</h3>
+                <p class="text-xs text-zinc-500 uppercase mb-1">Color: Midnight Black</p>
+                <p class="text-gray-500">₹3,200</p>
+            </div>
+            <div class="group cursor-pointer reveal-card" onclick="openModal('Slate Essential', '3400', 'Premium Linen', 'Boxy Fit', 'Slate Grey')">
+                <div class="aspect-[3/4] overflow-hidden rounded-xl bg-zinc-900 mb-4">
+                    <img src="D:\INMURE\33cb283b11c99065c72469ef7ebd7213.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                </div>
+                <h3 class="font-medium text-lg uppercase">Slate Essential</h3>
+                <p class="text-xs text-zinc-500 uppercase mb-1">Color: Slate Grey</p>
+                <p class="text-gray-500">₹3,400</p>
+            </div>
+            <div class="group cursor-pointer reveal-card" onclick="openModal('Ghost White', '2100', 'Organic Cotton', 'Slim Fit', 'Ghost White')">
+                <div class="aspect-[3/4] overflow-hidden rounded-xl bg-zinc-900 mb-4">
+                    <img src="D:\INMURE\5dd3e76652fc00dc285bad8d133e60ae.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                </div>
+                <h3 class="font-medium text-lg uppercase">Ghost White</h3>
+                <p class="text-xs text-zinc-500 uppercase mb-1">Color: Ghost White</p>
+                <p class="text-gray-500">₹2,100</p>
+            </div>
+            <div class="group cursor-pointer reveal-card" onclick="openModal('Onyx Drop', '1300', 'Jersey Blend', 'Athletic', 'Matte Onyx')">
+                <div class="aspect-[3/4] overflow-hidden rounded-xl bg-zinc-900 mb-4">
+                    <img src="D:\INMURE\e0554988155c76b0940a69eabfe9ca9e.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                </div>
+                <h3 class="font-medium text-lg uppercase">Onyx Drop</h3>
+                <p class="text-xs text-zinc-500 uppercase mb-1">Color: Matte Onyx</p>
+                <p class="text-gray-500">₹1,300</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="relative py-40 flex items-center justify-center text-center px-6 overflow-hidden bg-zinc-900">
+        <img src="https://via.placeholder.com/800x800/222/555?text=IMURE" class="absolute w-[600px] opacity-10 blur-xl animate-pulse" alt="Logo BG">
+        <div class="max-w-2xl reveal-bottom">
+            <h2 class="text-5xl font-bold mb-6 italic uppercase">About inmure</h2>
+            <p class="text-xl text-gray-400 leading-relaxed">Beyond the Trend. Taking that Thing Out Of Your Think and turning it into a limited-drop reality. Raw creativity. High-street precision. No fillers.</p>
+        </div>
+    </section>
+
+    <footer class="p-12 border-t border-zinc-800 text-center">
+        <div class="flex justify-center gap-8 mb-8 text-2xl">
+            <a href="https://www.instagram.com/inmurestudio" target="_blank" class="hover:text-white text-gray-500 transition">Instagram</a>
+            <a href="inmurestudio@gmail.com" class="hover:text-white text-gray-500 transition">Email</a>
+        </div>
+        <p class="text-gray-600 italic">inmurestudio@gmail.com</p>
+        <p class="since-tag">inmure SINCE 2026</p>
+    </footer>
+
+    <div id="productModal" class="modal px-4" onclick="closeModal(event)">
+        <div class="glass max-w-xl w-full p-8 rounded-2xl animate__animated animate__zoomIn" onclick="event.stopPropagation()">
+            <h2 id="m-title" class="text-3xl font-bold mb-2 uppercase"></h2>
+            <p id="m-price" class="text-xl text-zinc-400 mb-6"></p>
+            <div class="space-y-4 text-gray-300 mb-6">
+                <p><strong>Material:</strong> <span id="m-material"></span></p>
+                <p><strong>Fit:</strong> <span id="m-fit"></span></p>
+                <p><strong>Color:</strong> <span id="m-color"></span></p>
+            </div>
+            <div class="mb-8">
+                <p class="text-sm uppercase tracking-widest mb-3 font-bold">Select Size</p>
+                <div class="flex gap-4">
+                    <button class="size-btn" onclick="selectSize('S', this)">S</button>
+                    <button class="size-btn" onclick="selectSize('M', this)">M</button>
+                    <button class="size-btn" onclick="selectSize('L', this)">L</button>
+                    <button class="size-btn" onclick="selectSize('XL', this)">XL</button>
+                </div>
+            </div>
+            <button onclick="addToCart()" class="w-full bg-white text-black py-4 rounded-xl font-bold hover:bg-gray-200 transition">ADD TO CART</button>
+        </div>
+    </div>
+
+    <div id="cartPanel" class="fixed top-0 right-0 h-full w-full md:w-[400px] glass z-[60] cart-panel p-8 shadow-2xl">
+        <div class="flex justify-between items-center mb-8">
+            <h2 class="text-2xl font-bold uppercase">Your Bag</h2>
+            <button onclick="toggleCart()" class="text-3xl">&times;</button>
+        </div>
+        <div id="cart-items" class="space-y-4 mb-8 h-[50vh] overflow-y-auto"></div>
+        <div class="border-t border-zinc-700 pt-6">
+            <div class="flex mb-4">
+                <input id="couponInput" type="text" placeholder="Coupon Code" class="bg-zinc-800 border-none rounded-l-lg p-3 w-full outline-none">
+                <button onclick="applyCoupon()" class="bg-zinc-700 px-4 rounded-r-lg hover:bg-zinc-600">Apply</button>
+            </div>
+            <div class="flex justify-between text-xl font-bold mb-6">
+                <span>Total:</span>
+                <span id="total-price">₹0</span>
+            </div>
+            <button class="w-full bg-white text-black py-4 rounded-xl font-bold tracking-widest">CHECKOUT</button>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+        let currentProduct = {};
+        let discount = 0;
+        let selectedSize = null;
+
+        ScrollReveal().reveal('.reveal-top', { origin: 'top', distance: '100px', duration: 1500, delay: 200 });
+        ScrollReveal().reveal('.reveal-bottom', { origin: 'bottom', distance: '100px', duration: 1500, delay: 400 });
+        ScrollReveal().reveal('.reveal-left', { origin: 'left', distance: '80px', duration: 1200 });
+        ScrollReveal().reveal('.reveal-card', { interval: 200, scale: 0.85, duration: 1000 });
+
+        function selectSize(size, btn) {
+            selectedSize = size;
+            document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
+        function openModal(title, price, material, fit, color) {
+            selectedSize = null;
+            document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+            currentProduct = { title, price: parseInt(price), color: color };
+            document.getElementById('m-title').innerText = title;
+            document.getElementById('m-price').innerText = "₹" + price;
+            document.getElementById('m-material').innerText = material;
+            document.getElementById('m-fit').innerText = fit;
+            document.getElementById('m-color').innerText = color;
+            document.getElementById('productModal').style.display = 'flex';
+        }
+
+        function closeModal() { document.getElementById('productModal').style.display = 'none'; }
+        function toggleCart() { document.getElementById('cartPanel').classList.toggle('cart-open'); }
+
+        function addToCart() {
+            if (!selectedSize) { alert("Please select a size first!"); return; }
+            cart.push({...currentProduct, size: selectedSize, id: Date.now()});
+            updateCartUI();
+            closeModal();
+            toggleCart();
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCartUI();
+        }
+
+        function applyCoupon() {
+            const code = document.getElementById('couponInput').value;
+            if (code === 'SAVE10') { discount = 0.10; alert('10% Discount Applied!'); }
+             else if (code === 'SAVE25') { 
+        discount = 0.25; 
+        alert('25% Discount Applied!');} 
+            else { alert('Invalid Code'); }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const list = document.getElementById('cart-items');
+            const total = document.getElementById('total-price');
+            list.innerHTML = '';
+            let rawTotal = 0;
+            cart.forEach(item => {
+                rawTotal += item.price;
+                list.innerHTML += `
+                    <div class="flex justify-between items-center bg-zinc-900 p-4 rounded-lg border border-zinc-800">
+                        <div>
+                            <p class="font-bold uppercase">${item.title} (${item.size})</p>
+                            <p class="text-xs text-zinc-500 uppercase">${item.color}</p>
+                            <p class="text-sm text-gray-500">₹${item.price}</p>
+                        </div>
+                        <button onclick="removeFromCart(${item.id})" class="text-red-500">Remove</button>
+                    </div>`;
+            });
+            document.getElementById('cart-count').innerText = cart.length;
+            total.innerText = "₹" + (rawTotal - (rawTotal * discount)).toLocaleString();
+        }
+    </script>
+</body>
+</html>
